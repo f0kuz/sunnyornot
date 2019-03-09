@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended"
@@ -33,6 +32,7 @@
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   }
 }
