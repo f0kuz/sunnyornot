@@ -1,5 +1,6 @@
 {
   "extends": [
+    "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:react/recommended"
   ],
@@ -27,8 +28,12 @@
     ]
   },
   "plugins": [
-    "react"
+    "react",
+    "prettier"
   ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
