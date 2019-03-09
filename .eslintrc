@@ -1,9 +1,13 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "plugin:prettier/recommended",
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "env": {
+    "browser": true
+  },
   "settings": {
     "react": {
       "createClass": "createReactClass", // Regex for Component Factory to use,
@@ -37,7 +41,6 @@
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    },
-    "sourceType": "module"
+    }
   }
 }
