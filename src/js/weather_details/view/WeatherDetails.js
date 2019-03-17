@@ -2,18 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import * as actions from "../actions/fetch_weather_details_data_actions";
+
+import * as actions from "../actions/weather_details_actions";
 import { CITY } from "../../common/constants/weather_constants";
 import Divider from "../../common/components/Divider";
 import MainDay from "../components/MainDay";
+import RestDays from "../components/RestDays";
 
 const Wrapper = styled.section`
   display: flex;
   flex-wrap: wrap;
-`;
-
-const RestDays = styled.section`
-  display: flex;
 `;
 
 class WeatherDetails extends Component {
@@ -26,7 +24,7 @@ class WeatherDetails extends Component {
       <Wrapper id="weather-details">
         <MainDay />
         <Divider />
-        <RestDays id="next-days">...</RestDays>
+        <RestDays />
       </Wrapper>
     );
   }
@@ -35,7 +33,7 @@ class WeatherDetails extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     fetchWeatherDetailsData: id =>
-      dispatch(actions.startFetchWeatherDetailsDataAction(id))
+      dispatch(actions.startFetchWeatherDetailsAction(id))
   };
 };
 

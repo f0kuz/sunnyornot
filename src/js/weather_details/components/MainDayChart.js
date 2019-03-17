@@ -10,6 +10,12 @@ const Wrapper = styled.section`
   grid-column: 6/-1;
   border-radius: 2px;
   background: ${style_variables.colors.lighterViolet};
+
+  @media (max-width: ${style_variables.rwd.mobile._768}) {
+    grid-column: 1/-1;
+    height: 200px;
+    margin-top: 10px;
+  }
 `;
 
 // TODO: render chart of particular day data

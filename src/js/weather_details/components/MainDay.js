@@ -6,6 +6,7 @@ import MainDayChart from "./MainDayChart";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  width: 100%;
 `;
 
 const MainDay = () => (

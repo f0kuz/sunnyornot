@@ -10,6 +10,8 @@ Display data for current hour range
 
 Error handling
 
+Search field for particular city weather 
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

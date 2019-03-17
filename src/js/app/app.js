@@ -9,16 +9,18 @@ import { rootReducer } from "./reducers/app_reducer";
 import { watchWeatherDetails } from "../weather_details/watchers/weather_details_watcher";
 import { GlobalStyles } from "../../styles/global_styles";
 import WeatherDetails from "../weather_details/view/WeatherDetails";
+import Header from "../header/view/Header";
 
 const Main = styled.main`
   max-width: 1024px;
   width: 100%;
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 0 20px;
 `;
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : null || compose;
 
 const sagaMiddleware = createSagaMiddleware();
@@ -35,7 +37,7 @@ class App extends Component {
       <Provider store={store}>
         <Normalize />
         <GlobalStyles />
-        <header id="app-header">SUNNY OR NOT</header>
+        <Header />
         <Main>
           <WeatherDetails />
         </Main>

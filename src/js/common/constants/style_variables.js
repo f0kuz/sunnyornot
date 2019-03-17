@@ -14,5 +14,10 @@ export const style_variables = {
     darkViolet: "#201637",
     red: "#B60037",
     blue: "#360F87"
+  },
+  rwd: {
+    mobile: {
+      _768: "768px"
+    }
   }
 };

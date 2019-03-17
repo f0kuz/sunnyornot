@@ -3,14 +3,14 @@ import { put } from "redux-saga/effects";
 import axios from "axios";
 import moment from "moment";
 
-import * as actions from "../actions/fetch_weather_details_data_actions";
+import * as actions from "../actions/weather_details_actions";
 import { API, API_KEY } from "../../common/constants/api_constants";
-import { chunkArray } from "./../utilities/utility";
-import { collectNeededValues } from "../utilities/utility";
+import { chunkArray } from "../utilities/weather_utility";
+import { collectNeededValues } from "../utilities/weather_utility";
 
 export function* fetchAndProcessWeatherDetailsDataSaga(action) {
   try {
-    yield put(actions.initiateFetchWeatherDetailsDataAction());
+    yield put(actions.initiateFetchWeatherDetailsAction());
 
     const response = yield axios.get(
       `${API.GET_5DAY_WEATHER}id=${action.id}&units=metric&apikey=${API_KEY}`
@@ -48,10 +48,8 @@ export function* fetchAndProcessWeatherDetailsDataSaga(action) {
       return all;
     }, []);
 
-    yield put(actions.successFetchWeatherDetailsDataAction(weatherDetails));
+    yield put(actions.successFetchWeatherDetailsAction(weatherDetails));
   } catch (error) {
-    yield put(
-      actions.failFetchWeatherDetailsDataAction(error.response.data.error)
-    );
+    yield put(actions.failFetchWeatherDetailsAction(error.response.data.error));
   }
 }
