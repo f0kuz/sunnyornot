@@ -7,10 +7,10 @@ export const initiateFetchWeatherDetailsAction = () => {
   };
 };
 
-export const startFetchWeatherDetailsAction = id => {
+export const startFetchWeatherDetailsAction = cityId => {
   return {
     type: actionTypes.START_FETCH_WEATHER_DETAILS,
-    id
+    cityId
   };
 };
 

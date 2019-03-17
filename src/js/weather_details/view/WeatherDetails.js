@@ -16,7 +16,9 @@ const Wrapper = styled.section`
 
 class WeatherDetails extends Component {
   componentDidMount() {
-    this.props.fetchWeatherDetailsData(CITY[Math.floor(Math.random() * 4)].id);
+    const { fetchWeatherDetails, cityId } = this.props;
+
+    fetchWeatherDetails(CITY[cityId].id);
   }
 
   render() {
@@ -32,16 +34,23 @@ class WeatherDetails extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWeatherDetailsData: id =>
-      dispatch(actions.startFetchWeatherDetailsAction(id))
+    fetchWeatherDetails: cityId =>
+      dispatch(actions.startFetchWeatherDetailsAction(cityId))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    cityId: state.weatherDetailsReducer.cityId
   };
 };
 
 WeatherDetails.propTypes = {
-  fetchWeatherDetailsData: PropTypes.func
+  fetchWeatherDetails: PropTypes.func,
+  cityId: PropTypes.number
 };
 
 export default connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps
 )(WeatherDetails);

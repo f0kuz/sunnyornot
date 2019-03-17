@@ -1,17 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { style_variables } from "../../common/constants/style_variables";
+import Cities from "../components/Cities";
 
 const Wrapper = styled.header`
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background: ${style_variables.colors.darkerViolet};
-  padding: 0 20px;
+  padding: 10px 20px;
 `;
 
-const HeaderLogo1 = styled.h1`
+const Holder = styled.div`
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1024px;
+
+  @media (max-width: 430px) {
+    justify-content: center;
+    padding: 10px 20px 0;
+  }
+`;
+
+const HeaderLogo = styled.h1`
   color: ${style_variables.colors.lightViolet};
   font-size: 50px;
   margin: 0;
@@ -24,7 +35,10 @@ const HeaderLogo1 = styled.h1`
 
 const Header = () => (
   <Wrapper>
-    <HeaderLogo1>SUNNY OR NOT</HeaderLogo1>
+    <Holder>
+      <HeaderLogo>SUNNY OR NOT</HeaderLogo>
+      <Cities />
+    </Holder>
   </Wrapper>
 );
 

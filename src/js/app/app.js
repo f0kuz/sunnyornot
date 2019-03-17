@@ -41,7 +41,6 @@ class App extends Component {
         <Main>
           <WeatherDetails />
         </Main>
-        <footer id="app-footer">PLACEHOLDER</footer>
       </Provider>
     );
   }

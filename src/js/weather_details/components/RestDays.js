@@ -11,7 +11,7 @@ import withLoader from "../../common/components/withLoader";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(241px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(231px, 1fr));
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   width: 100%;

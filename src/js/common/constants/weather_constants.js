@@ -8,8 +8,8 @@ export const CITY = [
     name: "Warsaw"
   },
   {
-    id: 4927854,
-    name: "6618607"
+    id: 6618607,
+    name: "Paris"
   },
   {
     id: 6072606,
