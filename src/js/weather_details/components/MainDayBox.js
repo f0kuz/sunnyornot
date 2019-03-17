@@ -48,7 +48,7 @@ class MainDayBox extends Component {
             value={weatherDetails[visibleDayIdx].tempMin}
             kind="min"
           />
-          <ImageHolder>{weatherDetails[visibleDayIdx].icon}</ImageHolder>pa
+          <ImageHolder>{weatherDetails[visibleDayIdx].icon}</ImageHolder>
           <TemperatureValue
             value={weatherDetails[visibleDayIdx].tempMax}
             kind="max"
