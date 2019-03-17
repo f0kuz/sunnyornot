@@ -4,7 +4,7 @@ import { updateObject } from "../../common/utilities/utility";
 const initialState = {
   weatherDetails: [],
   visibleDayIdx: 0,
-  cityId: Math.floor(Math.random() * 4),
+  cityId: 0,
   error: null,
   loading: true
 };
