@@ -14,7 +14,9 @@ export function* fetchAndProcessWeatherDetailsDataSaga(action) {
     yield put(actions.initiateFetchWeatherDetailsAction());
 
     const response = yield axios.get(
-      `${API.GET_5DAY_WEATHER}id=${action.cityId}&units=metric&apikey=${API_KEY}`
+      `${API.GET_5DAY_WEATHER}id=${
+        action.cityId
+      }&units=metric&apikey=${API_KEY}`
     );
     const { list: details } = response.data;
 
@@ -51,6 +53,6 @@ export function* fetchAndProcessWeatherDetailsDataSaga(action) {
 
     yield put(actions.successFetchWeatherDetailsAction(weatherDetails));
   } catch (error) {
-    yield put(actions.failFetchWeatherDetailsAction(error.response.data.error));
+    yield put(actions.failFetchWeatherDetailsAction(error));
   }
 }

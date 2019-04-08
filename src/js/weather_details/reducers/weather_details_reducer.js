@@ -15,7 +15,7 @@ const initiateFetchWeatherDetailsDataReducer = state => {
 };
 
 const successFetchWeatherDetailsDataReducer = (state, action) => {
-  updateObject(state, {
+  return updateObject(state, {
     weatherDetails: action.weatherDetails,
     loading: false
   });
