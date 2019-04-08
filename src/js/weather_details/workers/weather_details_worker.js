@@ -53,6 +53,6 @@ export function* fetchAndProcessWeatherDetailsDataSaga(action) {
 
     yield put(actions.successFetchWeatherDetailsAction(weatherDetails));
   } catch (error) {
-    yield put(actions.failFetchWeatherDetailsAction(error));
+    yield put(actions.failFetchWeatherDetailsAction(error.response.data.error));
   }
 }
