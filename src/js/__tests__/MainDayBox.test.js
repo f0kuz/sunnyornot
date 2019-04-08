@@ -29,7 +29,7 @@ test("TodayTrigger is correctly rendered", async () => {
   mock.onGet().replyOnce(200, {
     loading: false,
     dayTriggerIsVisible: true
-  })
+  });
 
   const { getByTestId } = render(
     <Provider store={store}>

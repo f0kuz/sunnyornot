@@ -29,7 +29,7 @@ const DayHolder = ({ children, idx, showWeatherDetailsForThisDay }) => (
 DayHolder.propTypes = {
   children: PropTypes.any,
   idx: PropTypes.any,
-  showWeatherDetailsForThisDay: PropTypes.any,
+  showWeatherDetailsForThisDay: PropTypes.any
 };
 
 export default DayHolder;
