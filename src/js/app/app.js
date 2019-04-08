@@ -24,7 +24,7 @@ const composeEnhancers =
     : null || compose;
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );

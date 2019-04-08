@@ -4,6 +4,7 @@ import { updateObject } from "../../common/utilities/utility";
 const initialState = {
   weatherDetails: [],
   visibleDayIdx: 0,
+  dayTriggerIsVisible: false,
   cityId: 0,
   error: null,
   loading: true
@@ -14,7 +15,7 @@ const initiateFetchWeatherDetailsDataReducer = state => {
 };
 
 const successFetchWeatherDetailsDataReducer = (state, action) => {
-  return updateObject(state, {
+  updateObject(state, {
     weatherDetails: action.weatherDetails,
     loading: false
   });
@@ -26,7 +27,8 @@ const failFetchWeatherDetailsDataReducer = state => {
 
 const showWeatherDetailsForSelectedDayReducer = (state, action) => {
   return updateObject(state, {
-    visibleDayIdx: action.selectedDayIdx
+    visibleDayIdx: action.selectedDayIdx,
+    dayTriggerIsVisible: action.selectedDayIdx !== 0
   });
 };
 

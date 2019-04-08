@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import styled from "styled-components";
+import { CSSTransition } from "react-transition-group";
 
 import { style_variables } from "../../common/constants/style_variables";
 import * as actions from "../actions/weather_details_actions";
@@ -33,7 +34,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const TodayTrigger = styled.div`
+export const TodayTrigger = styled.div`
   position: absolute;
   left: 0;
   width: auto;
@@ -43,59 +44,93 @@ const TodayTrigger = styled.div`
   border-bottom-right-radius: 2px;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease-in;
-  transform: ${props =>
-    props.isVisible ? "translateY(-20px)" : "translateY(-50px)"};
   will-change: transform, opacity;
+  transform: translateY(-15px);
   &:hover {
     opacity: 0.9;
   }
 
-  @media (max-width: ${style_variables.rwd.mobile._768}) {
-    transform: ${props =>
-      props.isVisible ? "translateY(-15px)" : "translateY(-50px)"};
+  &.trigger-enter {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  &.trigger-enter-active {
+    opacity: 1;
+    transform: translateY(-15px);
+    transition: all 300ms;
+  }
+  &.trigger-exit {
+    opacity: 1;
+    transform: translateY(-15px);
+  }
+  &.trigger-exit-active {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 300ms;
   }
 `;
+
+const Translate = ({ children, ...props }) => {
+  return (
+    <CSSTransition {...props} timeout={300} classNames="trigger" unmountOnExit>
+      {children}
+    </CSSTransition>
+  );
+};
+
+Translate.propTypes = {
+  children: PropTypes.element
+};
 
 const MainDayBox = ({
   weatherDetails,
   visibleDayIdx,
-  showWeatherDetailsForThisDay
-}) => (
-  <Wrapper>
-    <TodayTrigger
-      isVisible={visibleDayIdx !== 0}
-      onClick={() => showWeatherDetailsForThisDay(0)}
-    >
-      {/* eslint-disable-next-line react/no-unescaped-entities */}
-      Show today's data
-    </TodayTrigger>
-    <DayBox weatherSource={weatherDetails[visibleDayIdx]} />
+  showWeatherDetailsForThisDay,
+  dayTriggerIsVisible
+}) => {
+  return (
+    <Wrapper>
+      <Translate
+        in={dayTriggerIsVisible}
+        onEnter={() => showWeatherDetailsForThisDay(1)}
+        onExited={() => showWeatherDetailsForThisDay(0)}
+      >
+        <TodayTrigger
+          onClick={() => showWeatherDetailsForThisDay(0)}
+          data-testid="CompTodayTrigger"
+        >
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          Show today's data
+        </TodayTrigger>
+      </Translate>
+      <DayBox weatherSource={weatherDetails[visibleDayIdx]} />
 
-    <Divider />
+      <Divider />
 
-    <Details>
-      <Text value="avg_wind_speed:" />
-      <Text
-        value={`${weatherDetails[visibleDayIdx].avgWindSpeed} m/s`}
-        fontSize="20px"
-        fontFamily="regular"
-      />
-      <Text value="description:" />
-      <Text
-        value={weatherDetails[visibleDayIdx].weatherDescription}
-        fontSize="20px"
-        fontFamily="regular"
-      />
-    </Details>
-  </Wrapper>
-);
+      <Details>
+        <Text value="avg_wind_speed:" />
+        <Text
+          value={`${weatherDetails[visibleDayIdx].avgWindSpeed} m/s`}
+          fontSize="20px"
+          fontFamily="regular"
+        />
+        <Text value="description:" />
+        <Text
+          value={weatherDetails[visibleDayIdx].weatherDescription}
+          fontSize="20px"
+          fontFamily="regular"
+        />
+      </Details>
+    </Wrapper>
+  );
+};
 
 const mapStateToProps = state => {
   return {
     weatherDetails: state.weatherDetailsReducer.weatherDetails,
     loading: state.weatherDetailsReducer.loading,
-    visibleDayIdx: state.weatherDetailsReducer.visibleDayIdx
+    visibleDayIdx: state.weatherDetailsReducer.visibleDayIdx,
+    dayTriggerIsVisible: state.weatherDetailsReducer.dayTriggerIsVisible
   };
 };
 
@@ -110,7 +145,8 @@ MainDayBox.propTypes = {
   weatherDetails: PropTypes.array,
   visibleDayIdx: PropTypes.number,
   loading: PropTypes.bool,
-  showWeatherDetailsForThisDay: PropTypes.func
+  showWeatherDetailsForThisDay: PropTypes.func,
+  dayTriggerIsVisible: PropTypes.bool
 };
 
 export default compose(

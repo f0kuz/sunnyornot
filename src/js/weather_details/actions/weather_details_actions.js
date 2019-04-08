@@ -1,16 +1,16 @@
 import * as actionTypes from "./weather_details_action_types";
 
 // FETCH WEATHER DETAILS
-export const initiateFetchWeatherDetailsAction = () => {
-  return {
-    type: actionTypes.INITIATE_FETCH_WEATHER_DETAILS
-  };
-};
-
 export const startFetchWeatherDetailsAction = cityId => {
   return {
     type: actionTypes.START_FETCH_WEATHER_DETAILS,
     cityId
+  };
+};
+
+export const initiateFetchWeatherDetailsAction = () => {
+  return {
+    type: actionTypes.INITIATE_FETCH_WEATHER_DETAILS
   };
 };
 

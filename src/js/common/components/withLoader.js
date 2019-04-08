@@ -23,7 +23,7 @@ const withLoader = WrappedComponent => {
     render() {
       // eslint-disable-next-line react/prop-types
       return this.props.loading ? (
-        <LoaderHolder>
+        <LoaderHolder data-testid="CompLoader">
           <Circular color="#E4E1F4" />
         </LoaderHolder>
       ) : (
